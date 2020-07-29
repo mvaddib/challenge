@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  app:
+    container_name: app-challenge
+    image: app-challenge
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+  db:
+    image: postgres:11
+    container_name: ad_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ad
